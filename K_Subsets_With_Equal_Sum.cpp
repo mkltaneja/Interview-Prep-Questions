@@ -75,7 +75,7 @@ int main()
         cout<<"] ";
         return 0;
     }
-    if(n % k != 0 || k > n)
+    if(sum % k != 0 || k > n)
     {
         cout<<"-1";
         return 0;
