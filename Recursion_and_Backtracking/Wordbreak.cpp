@@ -98,16 +98,19 @@ void wordbreak(string que, string ans)
 
 int main()
 {
-    int n;
-    cin>>n;
-    vector<string> dict(n);
-    for(int i=0; i<n; i++)
-    {
-        cin>>dict[i];
-    }
-    string sent;
-    cin>>sent;
+    string s = "Mukul";
+    for(int i=0; i<s.size(); i++)
+        cout<<s.substr(0,i)<<" "<<s.substr(i+1)<<endl;
+    // int n;
+    // cin>>n;
+    // vector<string> dict(n);
+    // for(int i=0; i<n; i++)
+    // {
+    //     cin>>dict[i];
+    // }
+    // string sent;
+    // cin>>sent;
 
-    insert(dict);
-    wordbreak(sent, "");
+    // insert(dict);
+    // wordbreak(sent, "");
 }
