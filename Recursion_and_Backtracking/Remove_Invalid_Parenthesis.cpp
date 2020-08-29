@@ -1,6 +1,8 @@
 #include<iostream>
 #include<stack>
 #include<unordered_set>
+#include<time.h>
+#include<iomanip>
 using namespace std;
 
 int minremoval(string &s)
@@ -45,5 +47,10 @@ int main()
     int invalids = minremoval(s);
     // cout<<invalids<<endl;
     unordered_set<string> pars;
+    clock_t start = clock();
     valid_parenthesis(s,invalids,pars);
+    clock_t end = clock();
+    double duration = 1.0*(end - start) / CLOCKS_PER_SEC;
+    cout<<fixed<<showpoint<<setprecision(5);
+    cout<<duration<<endl;
 }
