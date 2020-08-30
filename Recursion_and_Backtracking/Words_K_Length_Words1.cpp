@@ -1,5 +1,5 @@
 
-// APPROACH - calling boxes-wise
+// APPROACH - calling item-wise
 
 #include<iostream>
 #include<vector>
