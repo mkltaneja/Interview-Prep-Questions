@@ -1,4 +1,7 @@
 
+// (BOXES WISE or INDEX WISE)
+
+
 // METHOD 1 (using 2d board)
 #include<iostream>
 #include<vector>
