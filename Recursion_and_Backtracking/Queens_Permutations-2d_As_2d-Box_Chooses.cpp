@@ -1,4 +1,6 @@
 
+// BOXES WISE or INDEX WISE
+
 // METHOD 1 (using 2D Board)
 
 #include<iostream>
@@ -35,20 +37,20 @@ void queen_permu(int r, int c, int qpsf, int n, vector<bool> &placed, vector<vec
         nr = r;
         nc = c + 1;
     }
-    if(board[r][c] == 0)
+    // if(board[r][c] == 0)
+    // {
+    for(int q=0; q<placed.size(); q++)
     {
-        for(int q=0; q<placed.size(); q++)
+        if(!placed[q])
         {
-            if(!placed[q])
-            {
-                placed[q] = true;
-                board[r][c] = q+1;
-                queen_permu(nr, nc, qpsf+1, n, placed, board);
-                board[r][c] = 0;
-                placed[q] = false;
-            }
+            placed[q] = true;
+            board[r][c] = q+1;
+            queen_permu(nr, nc, qpsf+1, n, placed, board);
+            board[r][c] = 0;
+            placed[q] = false;
         }
     }
+    // }
     queen_permu(nr, nc, qpsf, n, placed, board);
 }
 
