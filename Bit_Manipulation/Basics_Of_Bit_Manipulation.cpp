@@ -11,5 +11,5 @@ int main()
     cout<<(n | mask1)<<endl;
     cout<<(n & ~mask2)<<endl;
     cout<<(n ^ mask3)<<endl;
-    cout<<(boolalpha)<<((n | mask4) == n)<<endl;
+    cout<<(boolalpha)<<((n & mask4) > 0)<<endl;
 }
