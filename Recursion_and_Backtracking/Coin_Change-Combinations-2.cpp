@@ -59,3 +59,39 @@ int main()
     cin>>amt;
     coinchange_combi(0, n, coins, amt, "");
 }
+
+//////////////////////////////////////////OR///////////////////////////////////////
+
+// APPROACH 3 (MODIFICATION OF SUBSEQUENCE)
+#include<iostream>
+#include<vector>
+using namespace std;
+
+void coinchange_combi(int idx, int n, vector<int> &coins, int amt, string ans)
+{
+    if(idx == n)
+    {
+        if(amt == 0)
+            cout<<ans<<"."<<endl;
+        return;
+    }
+    for(int freq = amt/coins[idx]; freq >= 1; freq--)
+    {
+        string temp = "";
+        for(int f = 0; f < freq; f++)
+            temp += to_string(coins[idx])+"-";
+        coinchange_combi(idx+1, n, coins, amt-(coins[idx]*freq), ans + temp);
+    }
+    coinchange_combi(idx+1, n, coins, amt, ans);
+}
+
+int main()
+{
+    int n, amt;
+    cin>>n;
+    vector<int> coins(n,0);
+    for(int i=0; i<n; i++)
+        cin>>coins[i];
+    cin>>amt;
+    coinchange_combi(0, n, coins, amt, "");
+}
