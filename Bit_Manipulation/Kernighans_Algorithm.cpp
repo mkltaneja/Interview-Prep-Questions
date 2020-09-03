@@ -22,18 +22,16 @@ int main()
 /////////////////////////////////////////OR/////////////////////////////////
 
 // APPROACH 2 (Reducing by righmost significant bit)
-
 #include<iostream>
 using namespace std;
 int main()
 {
-    long n;
+    int n;
     cin>>n;
     int count = 0;
     while(n)
     {
-        int rmsb = -n;
-        rmsb &= n;
+        int rmsb = n & -n;
         n -= rmsb;
         count++;
     }
