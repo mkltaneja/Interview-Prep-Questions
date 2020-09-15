@@ -95,3 +95,41 @@ int main()
     vector<vector<int>> dp(s.size(),vector<int>(s.size(),-1));
     cout<<countps(0, s.size()-1, s, dp);
 }
+
+// METHOD 4 (Tabulation) --> O(n^2)
+#include<iostream>
+#include<vector>
+using namespace std;
+
+int countps(int n, string &s, vector<vector<int>> &dp)
+{
+    for(int gap = 0; gap < n; gap++)
+    {
+        for(int i=0, j=gap; j < n; i++, j++)
+        {
+            if(gap == 0)
+            {
+                dp[i][j] = 1;
+                continue;
+            }
+            int middle_string = dp[i+1][j-1];
+            int exclude_prefix = dp[i+1][j];
+            int exclude_suffix = dp[i][j-1];
+            
+            int ans = exclude_prefix + exclude_suffix;
+            if(s[i] == s[j])
+                dp[i][j] = ans + 1;
+            else
+                dp[i][j] = ans - middle_string;
+        }
+    }
+    return dp[0][n-1];
+}
+
+int main()
+{
+    string s;
+    cin>>s;
+    vector<vector<int>> dp(s.size(),vector<int>(s.size(),0));
+    cout<<countps(s.size(), s, dp);
+}
