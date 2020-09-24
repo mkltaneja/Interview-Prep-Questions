@@ -60,7 +60,7 @@ int main()
             }
             if(i == m || j == n)
             {
-                dp[i][j] = (i != m && s2[i] == '*');
+                dp[i][j] = (j == n) && dp[i + 1][j];
                 continue;
             }
             if(s2[i] == '?')
@@ -71,7 +71,12 @@ int main()
                 dp[i][j] = (s2[i] == s1[j]) && dp[i + 1][j + 1]; 
         }
     }
-    
+    // for(auto v : dp)
+    // {
+    //     for(int i : v)
+    //         cout<<i<<" ";
+    //     cout<<endl;
+    // }
     cout<<(boolalpha)<<dp[0][0];
     
     return 0;
