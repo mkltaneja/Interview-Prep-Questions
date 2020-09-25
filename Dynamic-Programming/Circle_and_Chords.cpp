@@ -5,7 +5,7 @@ int main()
 {
     int n;
     cin>>n;
-    vector<int> dp(n+1,0);
+    vector<long> dp(n+1,0);
     
     for(int i = 0; i <= n; i++)
     {
