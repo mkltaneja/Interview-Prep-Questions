@@ -57,3 +57,36 @@ int main()
     
     return 0;
 }
+
+////////////////////////////////////////////////OR////////////////////////////////////
+
+// APPROACH 3 (Left Right Strategy)  --> O(n(n+1)/4)
+#include<iostream>
+#include<vector>
+using namespace std;
+
+int rod_cutting(int n, vector<int> &arr, vector<int> &dp)
+{
+    for(int len = 1; len <= n; len++)
+    {
+        dp[len] = arr[len-1];
+        int left = 1, right = len - left;
+        while(left <= right)
+            dp[len] = max(dp[len], dp[left++] + dp[right--]);
+    }
+    return dp[n];
+}
+
+int main()
+{
+    int n;
+    cin>>n;
+    vector<int> arr(n);
+    for(int i=0; i<n; i++)
+        cin>>arr[i];
+        
+    vector<int> dp(n+1,0);
+    cout<<rod_cutting(n, arr, dp);
+    
+    return 0;
+}
