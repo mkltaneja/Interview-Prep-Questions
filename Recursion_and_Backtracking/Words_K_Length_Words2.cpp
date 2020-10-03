@@ -1,6 +1,3 @@
-
-// calling index wise (boxes wise)
-
 #include<iostream>
 #include<vector>
 using namespace std;
