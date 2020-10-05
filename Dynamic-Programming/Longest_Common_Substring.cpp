@@ -57,3 +57,39 @@ int main()
     
     return 0;
 }
+
+// memoized
+#include<iostream>
+#include<vector>
+using namespace std;
+
+int maxlen = 0;
+int longest_common_substring(int i, int j, string &s, string &t, vector<vector<int>> &dp)
+{
+    if(i == s.size() || j == t.size())
+        return dp[i][j] = 0;
+    if(dp[i][j] != -1)
+        return dp[i][j];
+    if(s[i] == t[j])
+    {
+        int com = longest_common_substring(i + 1, j + 1, s, t, dp) + 1;
+        maxlen = max(maxlen, com);
+        return dp[i][j] = com;
+    }
+    
+    longest_common_substring(i + 1, j, s, t, dp);
+    longest_common_substring(i, j + 1, s, t, dp);
+    
+    return dp[i][j] = 0;
+}
+
+int main()
+{
+    string s, t;
+    cin>>s>>t;
+    vector<vector<int>> dp(s.size()+1, vector<int>(t.size()+1, -1));
+    longest_common_substring(0, 0, s, t, dp);
+    cout<<maxlen;
+    
+    return 0;
+}
