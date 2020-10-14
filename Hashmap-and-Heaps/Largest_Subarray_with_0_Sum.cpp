@@ -1,20 +1,20 @@
 #include <iostream>
 #include <vector>
-#include <unordered_map>
+#include <map>
 #define f first
 #define s second
 using namespace std;
 
-bool check_pair(int k, unordered_map<int, vector<int>> &modk)
+bool check_pair(int k, map<int, int> &modk)
 {
     for (auto itr : modk)
     {
-        while (modk[itr.f].size() > 0)
-        {
-            if (modk[k - itr.f].size() == 0)
-                return false;
-            modk[k - itr.f].pop_back();
-        }
+        if (itr.f == 0 && itr.s % 2 != 0)
+            return false;
+        else if (itr.f == k / 2 && itr.s % 2 != 0)
+            return false;
+        else if (itr.f != 0 && itr.f != k / 2 && itr.s != modk[k - itr.f])
+            return false;
     }
     return true;
 }
@@ -22,15 +22,15 @@ bool check_pair(int k, unordered_map<int, vector<int>> &modk)
 int main()
 {
     int n, k;
-    cin>>n;
+    cin >> n;
     vector<int> arr(n);
     for (int i = 0; i < n; i++)
         cin >> arr[i];
     cin >> k;
 
-    unordered_map<int, vector<int>> modk;
+    map<int, int> modk;
     for (int i = 0; i < n; i++)
-        modk[arr[i] % k].push_back(arr[i]);
+        modk[arr[i] % k]++;
 
     cout << (boolalpha) << check_pair(k, modk);
 
