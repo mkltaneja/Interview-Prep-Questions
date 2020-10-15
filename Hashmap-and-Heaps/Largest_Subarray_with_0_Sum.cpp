@@ -1,38 +1,34 @@
 #include <iostream>
 #include <vector>
-#include <map>
-#define f first
-#define s second
+#include <unordered_map>
 using namespace std;
 
-bool check_pair(int k, map<int, int> &modk)
+int Largest_Subarray(int n, vector<int> &arr)
 {
-    for (auto itr : modk)
+    int maxlen = 0;
+    unordered_map<int, int> sumatpos;
+    int sum = 0;
+    sumatpos.insert({sum,-1});
+    for(int i = 0; i < n; i++)
     {
-        if (itr.f == 0 && itr.s % 2 != 0)
-            return false;
-        else if (itr.f == k / 2 && itr.s % 2 != 0)
-            return false;
-        else if (itr.f != 0 && itr.f != k / 2 && itr.s != modk[k - itr.f])
-            return false;
+        sum += arr[i];
+        if(sumatpos.find(sum) == sumatpos.end())
+            sumatpos.insert({sum,i});
+        else
+            maxlen = max(maxlen, i - sumatpos[sum]);
     }
-    return true;
+    return maxlen;
 }
 
 int main()
 {
-    int n, k;
-    cin >> n;
+    int n;
+    cin>>n;
     vector<int> arr(n);
     for (int i = 0; i < n; i++)
         cin >> arr[i];
-    cin >> k;
 
-    map<int, int> modk;
-    for (int i = 0; i < n; i++)
-        modk[arr[i] % k]++;
-
-    cout << (boolalpha) << check_pair(k, modk);
+    cout << Largest_Subarray(n, arr);
 
     return 0;
 }
