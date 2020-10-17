@@ -1,3 +1,5 @@
+
+// METHOD 1 --> O((n^2)*logn)
 #include <iostream>
 #include <vector>
 #include <unordered_map>
@@ -6,13 +8,13 @@ using namespace std;
 
 int largest_contiguous_subarray(int n, vector<int> &arr)
 {
-    int maxlen = 0;
+    int maxlen = 1;
 
     for (int i = 0; i < n; i++)
     {
         unordered_set<int> vis;
-        int maxele = 0, minele = 1001;
-        for (int j = i; j < n; j++)
+        int maxele = arr[i], minele = arr[i];
+        for (int j = i + 1; j < n; j++)
         {
             if (vis.find(arr[j]) != vis.end())
                 break;
