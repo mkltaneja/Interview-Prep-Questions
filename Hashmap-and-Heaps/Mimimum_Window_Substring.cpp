@@ -23,7 +23,7 @@ string smallest_allchar_substring(string &s, string &t, int count, unordered_map
             if (minans.size() == 0 || ans.size() < minans.size())
                 minans = ans;
             // cout<<s[j]<<": "<<mc[s[j]]<<" --> ";
-            if (mc[s[j]]-- == 0)
+            if (--mc[s[j]] == 0)
                 mc.erase(s[j]);
             if (mc[s[j]] < mt[s[j]])
                 matched--;
