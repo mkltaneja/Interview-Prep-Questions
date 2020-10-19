@@ -42,7 +42,7 @@ int count_uniquechar_substrings(string &s)
 {
     unordered_map<char, int> freq;
     int count = 0;
-    int i = 0, end = 0, pend = -1;
+    int i = 0, end = 0;
     for (char c : s)
     {
         freq[c]++;
