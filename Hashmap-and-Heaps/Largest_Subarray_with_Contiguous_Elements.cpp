@@ -13,6 +13,7 @@ int largest_contiguous_subarray(int n, vector<int> &arr)
     for (int i = 0; i < n; i++)
     {
         unordered_set<int> vis;
+        vis.insert(arr[i]);
         int maxele = arr[i], minele = arr[i];
         for (int j = i + 1; j < n; j++)
         {
