@@ -70,3 +70,47 @@ int main()
 
     return 0;
 }
+
+#include <iostream>
+#include <vector>
+#include <unordered_map>
+#include <unordered_set>
+using namespace std;
+
+int equivalent_subarrays(int n, vector<int> &arr, int unique)
+{
+    unordered_map<int, int> m;
+    int j = 0;
+    int ans = 0;
+
+    for (int i = 0; i < n; i++)
+    {
+        m[arr[i]]++;
+        while (m.size() == unique)
+        {
+            ans += arr.size() - i;
+            if (--m[arr[j]] == 0)
+                m.erase(arr[j]);
+            j++;
+        }
+    }
+
+    return ans;
+}
+
+int main()
+{
+    int n;
+    cin >> n;
+    vector<int> arr(n);
+    unordered_set<int> st;
+    for (int i = 0; i < n; i++)
+    {
+        cin >> arr[i];
+        st.insert(arr[i]);
+    }
+
+    cout << equivalent_subarrays(n, arr, st.size());
+
+    return 0;
+}
