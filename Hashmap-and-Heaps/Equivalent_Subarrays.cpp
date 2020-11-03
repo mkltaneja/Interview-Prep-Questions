@@ -1,3 +1,5 @@
+
+// NETHOD 1
 #include <iostream>
 #include <vector>
 #include <unordered_map>
@@ -71,13 +73,14 @@ int main()
     return 0;
 }
 
+// METHOD 2
 #include <iostream>
 #include <vector>
 #include <unordered_map>
 #include <unordered_set>
 using namespace std;
 
-int equivalent_subarrays(int n, vector<int> &arr, int unique)
+int equivalent_subarrays(int n, vector<int> &arr, int k)
 {
     unordered_map<int, int> m;
     int j = 0;
@@ -86,7 +89,7 @@ int equivalent_subarrays(int n, vector<int> &arr, int unique)
     for (int i = 0; i < n; i++)
     {
         m[arr[i]]++;
-        while (m.size() == unique)
+        while (m.size() == k)
         {
             ans += arr.size() - i;
             if (--m[arr[j]] == 0)
