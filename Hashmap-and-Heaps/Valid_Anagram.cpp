@@ -32,3 +32,29 @@ int main()
     
     return 0;
 }
+
+// METHOD 2 (Using 1 Hashmap)
+#include<iostream>
+#include<unordered_map>
+using namespace std;
+
+bool isvalid_anagram(string &s1, string &s2)
+{
+    unordered_map<char,int> m;
+    for(char c : s1)
+        m[c]++;
+    for(char c : s2)
+        if(--m[c] == 0)
+            m.erase(c);
+    return m.size() == 0;
+}
+
+int main()
+{
+    string s1, s2;
+    cin>>s1>>s2;
+    
+    cout<<(boolalpha)<<isvalid_anagram(s1, s2);
+    
+    return 0;
+}
