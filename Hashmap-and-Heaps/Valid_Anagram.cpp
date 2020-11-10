@@ -40,6 +40,8 @@ using namespace std;
 
 bool isvalid_anagram(string &s1, string &s2)
 {
+    if(s1.size() != s2.size())
+        return false;
     unordered_map<char,int> m;
     for(char c : s1)
         m[c]++;
