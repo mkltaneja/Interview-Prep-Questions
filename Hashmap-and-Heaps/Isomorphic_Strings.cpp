@@ -7,20 +7,17 @@ bool are_isomorphic(string &s, string &t)
     if(s.size() != t.size())
         return false;
         
-    unordered_map<char, char> mst;
-    unordered_map<char, char> mts;
+    unordered_map<char, char> mapst;
+    unordered_map<char, bool> ismapped;
     
     for(int i = 0; i < s.size(); i++)
     {
-        if(mst.find(s[i]) == mst.end() && mts.find(t[i]) == mts.end())
-        {
-            mst.insert({s[i],t[i]});
-            mts.insert({t[i],s[i]});
-        }
-        else if(mst.find(s[i]) != mst.end() && t[i] != mst[s[i]])
+        if(mapst.find(s[i]) != mapst.end() && t[i] != mapst[s[i]])
             return false;
-        else if(mts.find(t[i]) != mts.end() && s[i] != mts[t[i]])
+        if(mapst.find(s[i]) == mapst.end() && ismapped[t[i]])
             return false;
+        mapst[s[i]] = t[i];
+        ismapped[t[i]] = true;
     }
     return true;
 }
